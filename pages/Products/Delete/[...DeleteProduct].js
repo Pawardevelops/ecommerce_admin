@@ -9,7 +9,7 @@ export default function DeleteProduct() {
     const {DeleteProduct}= route.query
     const reDirect = ()=>{route.push('/Products')}
     const deleteProduct =async ()=>{
-        const response = await axios.delete('/api/products?id='+DeleteProduct[0])
+        const response = await axios.delete('/api/products?id='+DeleteProduct?.[0])
         reDirect()
     }
     useEffect(()=>{
@@ -17,10 +17,11 @@ export default function DeleteProduct() {
             return ;
         }
         (async ()=>{
-            const response = await axios.get('/api/products?id='+DeleteProduct[0])
-            setname(response.data.title)
+            const response = await axios.get('/api/products?id='+DeleteProduct?.[0])
+            setname(response?.data?.title)
         })()
-    },[DeleteProduct[0]])
+    },[DeleteProduct?.[0]])
+    console.log(name,'query')
     return (
     <Layout>
     <h1 className="text-center">{`Do you really want to DELETE "${name}" ?`}</h1>
