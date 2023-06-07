@@ -15,6 +15,7 @@ export const nextAuthOptions={
       clientSecret: process.env.GOOGLE_SECRET
     }) 
   ],
+  secret:process.env.NEXT_PUBLIC_SECRET,
  adapter:MongoDBAdapter(clientPromise),
 //  callbacks:{
 //   session:({session,token,user})=>{
