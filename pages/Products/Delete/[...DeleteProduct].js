@@ -13,7 +13,7 @@ export default function DeleteProduct() {
         reDirect()
     }
     useEffect(()=>{
-        if(!DeleteProduct[0]){
+        if(!DeleteProduct?.[0]){
             return ;
         }
         (async ()=>{
