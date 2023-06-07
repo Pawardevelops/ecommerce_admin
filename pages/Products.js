@@ -2,11 +2,14 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import { useSession } from "next-auth/react";
 
 export default function Products() {
   const [products,setProducts] = useState()
+  const {data} = useSession()
+
   useEffect(() => {
-    axios.get('/api/products')
+    axios.get('/api/products?sellerEmail='+data?.user?.email)
       .then(res=>{
         setProducts(res.data)
       })
@@ -14,7 +17,8 @@ export default function Products() {
         console.log(error)
       })
   
-  }, [])
+  }, [data?.user?.email])
+
   return (
     <Layout>
     <Link href='/Products/New' className="btn-primary">Add Product</Link>

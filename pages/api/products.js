@@ -15,7 +15,7 @@ export default async function handle(req,res){
             res.send(await Product.findOne({_id:req.query.id}))
         }
         else{
-            res.send(await Product.find())
+            res.send(await Product.find(req.query))
         }
         
     }
