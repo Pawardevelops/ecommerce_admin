@@ -27,7 +27,7 @@ export default function ProductForm(
   const [isUploading,setIsUploading] =  useState(false)
   const [categories,setCategories] = useState([])
   useEffect(()=>{
-    axios.get('/api/category')
+    axios.get('/api/category?sellerEmail='+data?.user?.email)
       .then(response=>{
         setCategories(response.data.categories)
       })
@@ -71,8 +71,6 @@ export default function ProductForm(
       return newProperties;
     })
   }
-  console.log(categories)
-  console.log(category,"cat")
   return (
       <form onSubmit={creatProduct}>
       <label>Product Name</label>

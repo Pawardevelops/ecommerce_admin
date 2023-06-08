@@ -11,6 +11,7 @@ export default async function handle(req,res){
         res.status(201).json(productDoc)
     }
     else if(method =='GET'){
+        console.log("get")
         if(req.query?.id){
             res.send(await Product.findOne({_id:req.query.id}))
         }

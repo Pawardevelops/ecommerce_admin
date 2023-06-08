@@ -21,7 +21,9 @@ export default async function category(req,res){
             res.send({categories})
 
         }
-        
+        else{
+            res.status(401).json({error:'error'})
+        }
     }
     else if(method =='PUT'){
         const {_id,name,parentCategory,Property,sellerEmail} = req.body
