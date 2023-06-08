@@ -3,7 +3,7 @@ import NextAuth, { getServerSession } from 'next-auth/next'
 import GoogleProvider from 'next-auth/providers/google'
 import clientPromise from '../../../lib/mongodb'
 
-const adminEmail = 'sp20002511@gmail.com'
+// const adminEmail = 'sp20002511@gmail.com'
 
 
 

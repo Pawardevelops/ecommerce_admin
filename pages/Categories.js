@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import swal from "sweetalert";
 import category from "./api/category";
+import { useSession } from "next-auth/react";
 export default function Categories() {
+  const {data} = useSession()
   const [editCategory, setEditCategory] = useState(null);
   const [categories, setCategories] = useState(null);
   const [parentCategory, setParentCategory] = useState("");
@@ -22,12 +24,13 @@ export default function Categories() {
         Property:property.map(p=>{
           const {name,value} = p
           return {name,value}
-        })
+        }),
+        sellerEmail:data?.user?.email
       });
       setEditCategory(null);
       fetchCategories();
     } else {
-      await axios.post("api/category", { name, parentCategory,Property:property });
+      await axios.post("api/category", { name, parentCategory,Property:property,sellerEmail:data?.user?.email});
       fetchCategories();
     }
     setProperty([])
@@ -36,7 +39,7 @@ export default function Categories() {
   };
   const fetchCategories = () => {
     axios
-      .get("api/category")
+      .get("api/category?sellerEmail="+data?.user?.email)
       .then((res) => {
         setCategories(res.data.categories);
         setProperty(res.data.categories?.Property || [])
